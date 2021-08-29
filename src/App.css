@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+.container{
+  margin: 20px;
+}
+
+.table{
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.header-row{
+    border: 2px solid red;
+    background: rgb(255, 102, 0);
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+}
+.body {
+  padding: 5px;
+}
+
+.body-row{
+    background: rgba(204, 209, 207, 1);
+}
+
+.body-cell{
+  padding: 5px;
+  border: 2px solid rgb(71, 71, 71);
+}
+
+.header-cell{
+  padding: 10px;
+  border-right: 2px solid red;
+}

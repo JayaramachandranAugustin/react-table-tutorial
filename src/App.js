@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
-import { useTable } from 'react-table';
+import { useTable, useGlobalFilter } from 'react-table';
 import './App.css';
 import { COLUMNS } from './Header';
 import DATA from './data/data.json'
+import GlobalFilter from './GlobalFilter';
 
 const App = () => {
 
@@ -22,21 +23,30 @@ const App = () => {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data });
+    state,
+    preGlobalFilteredRows,
+    setGlobalFilter
+  } = useTable({ columns, 
+                  data ,
+    //disableGlobalFilter:true
+  },
+    useGlobalFilter);
 
+  const {globalFilter} = state
 
   return (
     <div className="container">
+      <div className="status-and-filter">
+        <div>Filtered {rows.length} out of {preGlobalFilteredRows.length}</div>
+        <div className="global-filter"><GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/></div>
+      </div>
     <table {...getTableProps()} className="table">
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()} 
           className="header-row">
             {headerGroup.headers.map(column => (
-              <th
-                {...column.getHeaderProps()}
-                className="header-cell"
-              >
+              <th {...column.getHeaderProps()} className="header-cell">
                 {column.render('Header')}
               </th>
             ))}

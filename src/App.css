@@ -70,3 +70,14 @@
   padding: 10px;
   border-right: 2px solid red;
 }
+
+.status-and-filter{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.global-filter-input{
+  padding: 5px;
+}

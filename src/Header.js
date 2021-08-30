@@ -2,7 +2,7 @@ export const COLUMNS = [
 
     {
         Header : "Movies or TV Series",
-        accessor:"movies"
+        accessor:"movies",
     },
     {
         Header : "Year",
@@ -26,7 +26,8 @@ export const COLUMNS = [
     },
     {
         Header : "Votes",
-        accessor:"votes"
+        accessor:"votes",
+        disableGlobalFilter:true
     },
     {
         Header : "Runtime",

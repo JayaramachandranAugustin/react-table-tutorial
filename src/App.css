@@ -81,3 +81,13 @@
 .global-filter-input{
   padding: 5px;
 }
+
+.text-filter-input{
+  margin-top:10px;
+  padding:5px
+}
+
+.select-filter-input{
+  margin-top:10px;
+  padding:5px
+}

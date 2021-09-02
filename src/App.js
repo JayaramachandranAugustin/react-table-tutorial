@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react'
-import { useTable, useGlobalFilter } from 'react-table';
+import { useTable, useGlobalFilter, useFilters } from 'react-table';
 import './App.css';
 import { COLUMNS } from './Header';
 import DATA from './data/data.json'
 import GlobalFilter from './GlobalFilter';
+import TextFilter from './TextFilter';
 
 const App = () => {
 
@@ -17,6 +18,12 @@ const App = () => {
     []
   )
 
+  const defaultColumn = useMemo(() => {
+    return {
+      Filter: TextFilter
+    }
+  }, [])
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -25,14 +32,17 @@ const App = () => {
     prepareRow,
     state,
     preGlobalFilteredRows,
-    setGlobalFilter
+    setGlobalFilter,
   } = useTable({ columns, 
                   data ,
-    //disableGlobalFilter:true
+                  defaultColumn,
+    //disableFilters:true
   },
-    useGlobalFilter);
+    useGlobalFilter,
+    useFilters);
 
   const {globalFilter} = state
+
 
   return (
     <div className="container">
@@ -48,6 +58,7 @@ const App = () => {
             {headerGroup.headers.map(column => (
               <th {...column.getHeaderProps()} className="header-cell">
                 {column.render('Header')}
+                <div>{column.canFilter ? column.render('Filter'):null}</div>
               </th>
             ))}
           </tr>
@@ -60,10 +71,8 @@ const App = () => {
             <tr {...row.getRowProps()} className="body-row">
               {row.cells.map(cell => {
                 return (
-                  <td
-                    {...cell.getCellProps()}
-                    className="body-cell"
-                  >
+                  <td {...cell.getCellProps()}
+                    className="body-cell" >
                     {cell.render('Cell')}
                   </td>
                 )

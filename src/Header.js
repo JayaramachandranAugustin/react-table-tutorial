@@ -1,8 +1,12 @@
+import SelectFilter from "./SelectFilter";
+import SliderFilter from "./SliderFilter";
+import TextFilter from "./TextFilter";
+
 export const COLUMNS = [
 
     {
         Header : "Movies or TV Series",
-        accessor:"movies",
+        accessor:"movies"
     },
     {
         Header : "Year",
@@ -10,11 +14,13 @@ export const COLUMNS = [
     },
     {
         Header : "Genre",
-        accessor:"genre"
+        accessor:"genre",
+        Filter: SelectFilter
     },
     {
         Header : "Rating",
-        accessor:"rating"
+        accessor:"rating",
+        Filter: SliderFilter
     },
     {
         Header : "Description",
@@ -35,6 +41,7 @@ export const COLUMNS = [
     },
     {
         Header : "Gross",
-        accessor:"gross"
+        accessor:"gross",
+        disableFilters: true
     }
 ]
